@@ -14,6 +14,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddSwaggerGen();
 builder.Services
     .AddTransient<IProductsService, ProductsService>();
+
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CalcApiContext>(options =>
 {

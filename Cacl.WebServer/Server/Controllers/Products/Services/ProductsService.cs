@@ -25,7 +25,6 @@ namespace CaclApi.Server.Controllers.Products.Services
                 .Include(x => x.ProductCategory)
                 .Include(x => x.MealCompositions)
                 .FirstOrDefaultAsync(x => x.Id == id);
-            //product = new Product() { Name = "Яблоко", Calories = 150 };
             if (product == null)
                 throw new ArgumentException("не найден"); // todo сделать кастомную ошибку ObjectNotFoundException
 

@@ -2,8 +2,9 @@
 {
     public class FoodIntakeType
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public List<FoodIntake> FoodIntake { get; set; }
+        public string Description { get; set; }
+        public List<FoodIntake> FoodIntakes { get; set; } = new List<FoodIntake>();
     }
 }

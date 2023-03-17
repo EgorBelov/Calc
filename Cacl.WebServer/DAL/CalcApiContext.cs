@@ -8,7 +8,7 @@ namespace CaclApi.DAL
     {
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Meal> Meals => Set<Meal>();
-        public DbSet<MealComposition> MealsCompositions => Set<MealComposition>();
+        public DbSet<Ingredient> Ingredients => Set<Ingredient>();
         public DbSet<User> Users => Set<User>();
         public DbSet<FoodIntake> FoodIntakes => Set<FoodIntake>();
         public DbSet<FoodIntakeType> FoodIntakeTypes=> Set<FoodIntakeType>();
