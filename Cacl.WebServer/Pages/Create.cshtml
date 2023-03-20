@@ -1,0 +1,30 @@
+﻿@page
+@model CaclApi.Pages.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+<h2>Добавление новый прием пищи</h2>
+<form method="post">
+    @*<input asp-for="FoodIntake.Id" type="hidden" />*@
+    
+    <label asp-for="FoodIntake.FoodIntakeType" class="control-label">Тип приема пищи</label>
+    
+    <select asp-for="FoodIntake.FoodIntakeTypeId" class="form-control"
+            asp-items="@Model.FoodIntakeTypeSL">
+        <option value="">Выбор приема пищи</option>
+    </select>
+    <span asp-validation-for="FoodIntake.FoodIntakeTypeId" class="text-danger" />
+      
+    
+    
+    <p>
+        <label asp-for="FoodIntake.Date">Дата приема пищи</label><br />
+        <input asp-for="FoodIntake.Date" date />
+    </p>
+    <input type="submit" value="Отправить" class="gradient-button" />
+</form>
+
+@section Scripts{ 
+        <partial name="_ValidationScriptsPartial" />
+}

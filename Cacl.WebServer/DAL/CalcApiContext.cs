@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CaclApi.DAL.Entities;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Security.Principal;
 
 namespace CaclApi.DAL
 {
-    public class CalcApiContext : DbContext
+    public class CalcApiContext : IdentityDbContext<User>
     {
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Meal> Meals => Set<Meal>();
@@ -15,7 +17,7 @@ namespace CaclApi.DAL
         public DbSet<WeightDiary> WeightDiaries=> Set<WeightDiary>();
         public DbSet<ProductCategory> ProductCategories => Set<ProductCategory>();
         public DbSet<MealCategory> MealCategories => Set<MealCategory>();
-        public DbSet<UserLogin> UserLogins => Set<UserLogin>();
+        //public DbSet<User> UserLogins => Set<User>();
         public DbSet<PhysicalActivity> PhysicalActivities => Set<PhysicalActivity>();
         public CalcApiContext(DbContextOptions<CalcApiContext> options)
             : base(options)

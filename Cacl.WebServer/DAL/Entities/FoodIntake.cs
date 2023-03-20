@@ -7,7 +7,7 @@
         public FoodIntakeType? FoodIntakeType { get; set; }    // навигационное свойство
         public DateTime? Date { get; set; }
         public List<Meal> Meals { get; set; } = new();
-        public int? UserId { get; set; }      // внешний ключ
+        public string? UserId { get; set; }      // внешний ключ
         public User? User { get; set; }    // навигационное свойство
     }
 }

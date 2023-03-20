@@ -4,7 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CaclApi.DAL;
-using CaclApi.Server.Controllers.Products.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Principal;
+using CaclApi.DAL.Entities;
+using CaclApi.Pages.Services;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -12,8 +16,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 builder.Services.AddSwaggerGen();
+
 builder.Services
-    .AddTransient<IProductsService, ProductsService>();
+    .AddTransient<IFoodIntakesService, FoodIntakesService>();
 
 
 builder.Services.AddSwaggerGen();
@@ -21,6 +26,28 @@ builder.Services.AddDbContext<CalcApiContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.Cookie.HttpOnly = true;
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+            options.LoginPath = "/Account/Login";
+            options.AccessDeniedPath = "/Account/AccessDenied";
+            options.SlidingExpiration = true;
+        });
+
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 0;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+})
+    .AddEntityFrameworkStores<CalcApiContext>()
+    .AddDefaultTokenProviders();
+
 
 var app = builder.Build();
 
@@ -35,6 +62,9 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.MapControllers();
+
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapRazorPages();
 
 using (var scope = app.Services.CreateScope())
@@ -43,7 +73,7 @@ using (var scope = app.Services.CreateScope())
 
 
     var db = serviceProvider.GetRequiredService<CalcApiContext>();
-    await db.Database.EnsureDeletedAsync();
+    //await db.Database.EnsureDeletedAsync();
     await db.Database.EnsureCreatedAsync();
     await CalcApiContextSeed.InitializeDb(db);
 

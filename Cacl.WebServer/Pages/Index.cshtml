@@ -1,6 +1,64 @@
 ﻿@page
 @model CaclApi.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
 }
-<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
-<h2>Список пользователей</h2>
+<h2>FWSFSFSFSF</h2>
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">МОИ ПРИЕМЫ ПИЩИ</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="create" class="btn btn-info form-control text-white">создать аренду</a>
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.FoodIntakes.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label>Тип приема пищи</label>
+                        </th>
+                        <th>
+                            <label>Дата</label>
+                        </th>
+                        <th>
+                            <label>Блюда</label>
+                        </th>
+                    </tr>
+                    @foreach (var foodIntake in Model.FoodIntakes)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => foodIntake.FoodIntakeType.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => foodIntake.Date)
+                            </td>
+                            <td>
+                                @foreach (var meal in foodIntake.Meals)
+                                {
+                                    <div>
+                                        @Html.DisplayFor(m => meal.Name)
+                                    </div>
+                                }
+                            </td>
+                            
+
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@foodIntake.Id" class="btn btn-danger btn-sm">Удалить</button>
+                                <a asp-page="Edit" asp-route-id="@foodIntake.Id" class="btn btn-success btn-sm text-white">Редактировать</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>Нет приемов пищи</p>
+            }
+        </form>
+    </div>
+</div>
