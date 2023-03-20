@@ -18,7 +18,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddSwaggerGen();
 
 builder.Services
-    .AddTransient<IFoodIntakesService, FoodIntakesService>();
+    .AddTransient<IFoodIntakeService, FoodIntakeService>()
+    .AddTransient<IMealService, MealService>()
+    .AddTransient<IIngredientService, IngredientService>();
 
 
 builder.Services.AddSwaggerGen();

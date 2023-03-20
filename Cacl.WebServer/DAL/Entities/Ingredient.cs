@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public int? ProductQuantity { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public int? ProductId { get; set; }      // внешний ключ
         public Product? Product { get; set; }    // навигационное свойство
 

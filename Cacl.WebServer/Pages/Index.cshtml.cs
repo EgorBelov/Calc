@@ -11,16 +11,16 @@ using Microsoft.EntityFrameworkCore;
 namespace CaclApi.Pages
 {
     [Authorize]
-    public class IndexModel : PageModel
+    public class IndexModel : GetConstantListPage
     {
-        private readonly IFoodIntakesService _foodIntakesService;
+        private readonly IFoodIntakeService _foodIntakesService;
 
-        public IndexModel(IFoodIntakesService foodIntakesService)
+        public IndexModel(IFoodIntakeService foodIntakesService)
         {
             _foodIntakesService = foodIntakesService;
         }
         public List<FoodIntake> FoodIntakes { get; set; }
-        public List<Meal> Meals { get; set; }
+        //public List<Ingredient> Ingredient { get; set; }
         public async Task<IActionResult> OnGetAsync(CancellationToken ct)
         {
             try

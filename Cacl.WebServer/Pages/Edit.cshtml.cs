@@ -14,14 +14,14 @@ namespace CaclApi.Pages
         private readonly CalcApiContext _context;
         private readonly UserManager<User> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IFoodIntakesService _foodIntakesService;
+        private readonly IFoodIntakeService _foodIntakesService;
 
 
         [BindProperty]
         public FoodIntake FoodIntake { get; set; }
 
 
-        public EditModel(CalcApiContext context, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor, IFoodIntakesService foodIntakesService)
+        public EditModel(CalcApiContext context, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor, IFoodIntakeService foodIntakesService)
         {
             _context = context;
             _userManager = userManager;

@@ -12,15 +12,20 @@
     
     <select asp-for="FoodIntake.FoodIntakeTypeId" class="form-control"
             asp-items="@Model.FoodIntakeTypeSL">
-        <option value="">Выбор приема пищи</option>
+        <option value="">Выбор типа приема пищи</option>
     </select>
     <span asp-validation-for="FoodIntake.FoodIntakeTypeId" class="text-danger" />
-      
-    
+
+   @* <label asp-for="@Model.SelectedMeals" class="control-label">Блюдо</label>
+    <select asp-for="@Model.SelectedMeals" class="form-control"
+            asp-items="@Model.MealSL">
+        <option value="">Выбор блюда</option>
+    </select>
+    <span asp-validation-for="@Model.SelectedMeals" class="text-danger" />*@
     
     <p>
         <label asp-for="FoodIntake.Date">Дата приема пищи</label><br />
-        <input asp-for="FoodIntake.Date" date />
+        <input asp-for="FoodIntake.Date" type="date" />
     </p>
     <input type="submit" value="Отправить" class="gradient-button" />
 </form>

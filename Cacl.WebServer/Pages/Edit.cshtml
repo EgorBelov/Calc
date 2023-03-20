@@ -4,7 +4,7 @@
 @{
 }
 <link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
-<h2>Добавление новый прием пищи</h2>
+<h2>Изменение приема пищи</h2>
 <form method="post">
     <input asp-for="FoodIntake.Id" type="hidden" />
 
@@ -22,7 +22,7 @@
         <label asp-for="FoodIntake.Date">Дата приема пищи</label><br />
         <input asp-for="FoodIntake.Date" date />
     </p>
-    <input type="submit" value="Отправить" class="gradient-button" />
+    <input type="submit" value="Сохранить" class="gradient-button" />
 </form>
 
 @section Scripts{

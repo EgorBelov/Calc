@@ -7,6 +7,6 @@
         public int Calories { get; set; }
         public int? ProductCategoryId { get; set; }      // внешний ключ
         public ProductCategory? ProductCategory { get; set; }    // навигационное свойство
-        public List<Ingredient>? MealCompositions { get; set; } = new();
+        public List<Ingredient>? Ingredients { get; set; } = new();
     }
 }

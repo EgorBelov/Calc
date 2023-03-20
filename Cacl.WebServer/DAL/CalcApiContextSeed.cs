@@ -20,10 +20,10 @@ namespace CaclApi.DAL
 
             //var mealCategory = new MealCategory() { Name = "НЕ СЪЕДОБНО", Description = "Шпоаф" };
 
-            //var meal = new Meal() { Name = "Яблоко с огурцом", MealCategory= mealCategory };
+            //var meal = new Ingredient() { Name = "Яблоко с огурцом", MealCategory= mealCategory };
 
-            //meal.Ingredients?.Add(ingredient1);
-            //meal.Ingredients?.Add(ingredient2);
+            //meal.Ingredient?.Add(ingredient1);
+            //meal.Ingredient?.Add(ingredient2);
 
             //var foodintakesType1 = new FoodIntakeType() { Name = "Завтрак", Description = "Вкусно" };
             //var foodintakesType2 = new FoodIntakeType() { Name = "Полдник", Description = "Вкусно" };
@@ -32,9 +32,9 @@ namespace CaclApi.DAL
             //var foodintakesType5 = new FoodIntakeType() { Name = "Просто перекус", Description = "Вкусно" };
 
 
-            //var foodintake = new FoodIntake() { FoodIntakeType= foodintakesType1, Date = DateTime.Now };
+            //var foodintake = new Ingredient() { FoodIntakeType= foodintakesType1, Date = DateTime.Now };
 
-            //foodintake.Meals?.Add(meal);
+            //foodintake.Ingredient?.Add(meal);
 
             //var physicalActivity = new PhysicalActivity() { Description = "много тренировок", Ratio = 1.65 };
             
@@ -49,9 +49,9 @@ namespace CaclApi.DAL
             //await db.FoodIntakeTypes.AddRangeAsync(foodintakesType2,foodintakesType3,foodintakesType4,foodintakesType5);
             ////await db.UserLogins.AddAsync(userLogin);
             //await db.FoodIntakes.AddAsync(foodintake);
-            //await db.Ingredients.AddRangeAsync(ingredient1, ingredient2);
+            //await db.Ingredient.AddRangeAsync(ingredient1, ingredient2);
             //await db.WeightDiaries.AddAsync(weightDiary);
-            //await db.Meals.AddAsync(meal);
+            //await db.Ingredient.AddAsync(meal);
 
             //await db.SaveChangesAsync();
         }

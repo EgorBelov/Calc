@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CaclApi.Pages
 {
@@ -23,8 +25,8 @@ namespace CaclApi.Pages
 
         
 
-        //[BindProperty]
-        //public List<Meal> SelectedMeals { get; set; }
+        [BindProperty]
+        public List<Meal> SelectedMeals { get; set; }
 
         public CreateModel(CalcApiContext context, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor)
         {
@@ -38,6 +40,7 @@ namespace CaclApi.Pages
         public IActionResult OnGet()
         {
             FoodIntakeTypeDropDownList(_context);
+            MealDropDownList(_context);
             return Page();
         }
 
@@ -50,8 +53,8 @@ namespace CaclApi.Pages
                 {
                     var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
                     FoodIntake.User = user;
-                    
-                   //foreach(var meal in SelectedMeals) FoodIntake.Meals.Add(meal);
+                   
+                   foreach(var meal in SelectedMeals) FoodIntake.Meals.Add(meal);
                     
                     await _context.FoodIntakes.AddAsync(FoodIntake); 
                     await _context.SaveChangesAsync();
