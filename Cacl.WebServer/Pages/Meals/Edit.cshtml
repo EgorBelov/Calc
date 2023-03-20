@@ -1,0 +1,32 @@
+﻿@page
+@model CaclApi.Pages.Meals.EditModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+<h2>Изменение блюда @Model.Meal.Name</h2>
+<form method="post">
+    <input asp-for="Meal.Id" type="hidden" />
+
+    <label asp-for="Meal.MealCategory" class="control-label">Категория блюда</label>
+
+    <select asp-for="Meal.MealCategoryId" class="form-control"
+            asp-items="@Model.MealCategorySL">
+        <option value="">Выбор категории блюда</option>
+    </select>
+    <span asp-validation-for="Meal.MealCategoryId" class="text-danger" />
+
+    @* <label asp-for="@Model.SelectedProducts" class="control-label">Блюдо</label>
+    <select asp-for="@Model.SelectedProducts" class="form-control"
+            asp-items="@Model.ProductSL">
+        <option value="">Выбор блюда</option>
+    </select>
+    <span asp-validation-for="@Model.SelectedProducts" class="text-danger" />*@
+
+
+    <input type="submit" value="Сохранить" class="gradient-button" />
+</form>
+
+@section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+}

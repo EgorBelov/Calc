@@ -1,0 +1,33 @@
+﻿@page
+@model CaclApi.Pages.Ingredients.EditModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+<h2>Изменение ингредиента</h2>
+<form method="post">
+    <input asp-for="Ingredient.Id" type="hidden" />
+    
+    
+    <label asp-for="Ingredient.Product" class="control-label">Продукт</label>
+
+    <select asp-for="Ingredient.ProductId" class="form-control"
+            asp-items="@Model.ProductSL">
+        <option value="">Выбор продукта</option>
+    </select>
+    <span asp-validation-for="Ingredient.ProductId" class="text-danger" />
+
+    <p>
+        <label asp-for="Ingredient.ProductQuantity">Вес продукта</label><br />
+        <input asp-for="Ingredient.ProductQuantity" number />
+    </p>
+    <p>
+        <label asp-for="Ingredient.Description">Описание</label><br />
+        <input asp-for="Ingredient.Description" />
+    </p>
+    <input type="submit" value="Cохранить" class="gradient-button" />
+</form>
+
+@section Scripts{ 
+                <partial name="_ValidationScriptsPartial" />
+}
