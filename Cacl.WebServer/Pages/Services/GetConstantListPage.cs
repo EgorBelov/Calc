@@ -19,6 +19,7 @@ namespace CaclApi.Pages.Services
         public SelectList IngredientSL { get; set; }
         public SelectList MealCategorySL { get; set; }
 
+        public SelectList FoodIntakeSL { get; set; }
 
 
         public void FoodIntakeTypeDropDownList(CalcApiContext context, object value = null)
@@ -59,10 +60,10 @@ namespace CaclApi.Pages.Services
 
         public void IngredientDropDownList(CalcApiContext context, object value = null)
         {
-            var query = context.Ingredients.OrderBy(x => x.Product.Name);
+            var query = context.Ingredients.OrderBy(x => x.ProductQuantity);
 
             IngredientSL = new SelectList(query.AsNoTracking(),
-                        "Id", "Name", value);
+                        "Id", "ProductQuantity", value);
         }
 
     }

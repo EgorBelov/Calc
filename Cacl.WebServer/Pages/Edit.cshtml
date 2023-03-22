@@ -8,6 +8,9 @@
 <form method="post">
     <input asp-for="FoodIntake.Id" type="hidden" />
 
+
+
+
     <label asp-for="FoodIntake.FoodIntakeType" class="control-label">Тип приема пищи</label>
 
     <select asp-for="FoodIntake.FoodIntakeTypeId" class="form-control"
@@ -22,7 +25,7 @@
         <label asp-for="FoodIntake.Date">Дата приема пищи</label><br />
         <input asp-for="FoodIntake.Date" date />
     </p>
-    <input type="submit" value="Сохранить" class="gradient-button" />
+    <input type="submit" value="Сохранить" class="inputSend" />
 </form>
 
 @section Scripts{

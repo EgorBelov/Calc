@@ -2,8 +2,10 @@
 using CaclApi.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CaclApi.Pages.Services
 {
@@ -73,6 +75,7 @@ namespace CaclApi.Pages.Services
             return foodIntakes;
             
         }
+
         public async Task<bool> DeleteFoodIntake(int? id, CancellationToken ct)
         {
             if (id == null)

@@ -7,7 +7,10 @@
 <h2>Изменение блюда @Model.Meal.Name</h2>
 <form method="post">
     <input asp-for="Meal.Id" type="hidden" />
-
+    <p>
+        <label asp-for="Meal.Name">Название</label><br />
+        <input asp-for="Meal.Name" />
+    </p>
     <label asp-for="Meal.MealCategory" class="control-label">Категория блюда</label>
 
     <select asp-for="Meal.MealCategoryId" class="form-control"
@@ -24,7 +27,7 @@
     <span asp-validation-for="@Model.SelectedProducts" class="text-danger" />*@
 
 
-    <input type="submit" value="Сохранить" class="gradient-button" />
+    <input type="submit" value="Сохранить" class="inputSend" />
 </form>
 
 @section Scripts{

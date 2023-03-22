@@ -4,9 +4,19 @@
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public int? MealCategoryId { get; set; }      // внешний ключ
-        public MealCategory? MealCategory { get; set; }    // навигационное свойство
+        public int? MealCategoryId { get; set; }     
+        public MealCategory? MealCategory { get; set; }   
         public List<Ingredient> Ingredients { get; set; } = new ();
         public List<FoodIntake> FoodIntakes { get; set; } = new ();
+
+        public int TotalCalories { get; set; } = 0;
+        
+        public void MealTotal()
+        {
+            foreach(var item in Ingredients)
+            {
+                this.TotalCalories += item.TotalCalories;
+            }
+        }
     }
 }

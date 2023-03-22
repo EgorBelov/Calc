@@ -4,29 +4,33 @@
 @{
 }
 <link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
-<div class="container row p-0 m-0">
-    <div class="col-9">
-        <h2 class="text-info">Блюда</h2>
-    </div>
-    <div class="col-3">
-        <a asp-page="create" class="btn btn-info form-control text-white">Добавить блюдо</a>
+<div >
+    <div class="divHead">
+        <h2>Блюда</h2>
+        <a asp-page="create" class="btnCreate">Добавить блюдо</a>
     </div>
 
-    <div class="col-12 border p-3 mt-3">
+    <div class="divTable">
         <form method="post">
             @if (Model.Meals.Count() > 0)
             {
-                <table class="table table-striped border">
-                    <tr class="table-secondary">
+                <table >
+                    <tr >
                         <th>
-                            <label>Название</label>
+                            Название
                         </th>
                         <th>
-                            <label>Категория блюда</label>
+                           Категория блюда
                         </th>
                         
                         <th>
-                            <label>Продукты</label>
+                            Продукты
+                        </th>
+                        <th>
+                            Калорийность
+                        </th>
+                        <th>
+                            Действия
                         </th>
                     </tr>
                     @foreach (var meal in Model.Meals)
@@ -46,11 +50,15 @@
                                     </div>
                                 }
                             </td>
-
+                             <td>
+                                @Html.DisplayFor(m => meal.TotalCalories)
+                            </td>
 
                             <td>
-                                <button asp-page-handler="Delete" asp-route-id="@meal.Id" class="btn btn-danger btn-sm">Удалить</button>
-                                <a asp-page="Edit" asp-route-id="@meal.Id" class="btn btn-success btn-sm text-white">Редактировать</a>
+                                <div class="divBtns">
+                                    <a asp-page="Edit" asp-route-id="@meal.Id" class="btn">Редактировать</a>
+                                    <button asp-page-handler="Delete" asp-route-id="@meal.Id" class="btn">Удалить</button>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -58,7 +66,9 @@
             }
             else
             {
-                <p>Нет блюд</p>
+                <div class="divText">
+                    <p>Нет блюд</p>
+                </div>
             }
         </form>
     </div>

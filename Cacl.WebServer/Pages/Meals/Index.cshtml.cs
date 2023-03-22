@@ -10,10 +10,13 @@ namespace CaclApi.Pages.Meals
     public class IndexModel : GetConstantListPage
     {
         private readonly IMealService _mealService;
+        public List<int?> sumCalorie { get; set; }
+
 
         public IndexModel(IMealService mealService)
         {
             _mealService = mealService;
+
         }
 
         public List<Meal> Meals { get; set; }
@@ -24,7 +27,6 @@ namespace CaclApi.Pages.Meals
             {
                 var meals = await _mealService.GetMeals(ct);
                 Meals = meals;
-
                 return Page();
             }
             catch (Exception)

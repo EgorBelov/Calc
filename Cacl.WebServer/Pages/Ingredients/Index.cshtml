@@ -4,12 +4,10 @@
 @{
 }
 <link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
-<div class="container row p-0 m-0">
-    <div class="col-9">
-        <h2 class="text-info">Ингредиенты</h2>
-    </div>
-    <div class="col-3">
-        <a asp-page="create" class="btn btn-info form-control text-white">Добавить блюдо</a>
+<div >
+    <div class="divHead">
+        <h2>Ингредиенты</h2>
+        <a asp-page="create" class="btnCreate">Добавить ингредиент</a>
     </div>
 
     <div class="col-12 border p-3 mt-3">
@@ -19,14 +17,20 @@
                 <table class="table table-striped border">
                     <tr class="table-secondary">
                         <th>
-                            <label>Продукт</label>
+                            Продукт
                         </th>
                         <th>
-                            <label>Вес продукта</label>
+                           Вес продукта
                         </th>
                         <th>
-                            <label>Описание</label>
+                            Калорийность
                         </th>
+                        <th>
+                            Описание
+                        </th>
+                        <th>
+                        Действия
+                    </th>
                     </tr>
                     @foreach (var ingredient in Model.Ingredients)
                     {
@@ -38,11 +42,17 @@
                                 @Html.DisplayFor(m => ingredient.ProductQuantity)
                             </td>
                             <td>
+                               
+                                @(ingredient.Product.Calories * @ingredient.ProductQuantity)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(m => ingredient.Description)
                             </td>
                             <td>
-                                <button asp-page-handler="Delete" asp-route-id="@ingredient.Id" class="btn btn-danger btn-sm">Удалить</button>
-                                <a asp-page="Edit" asp-route-id="@ingredient.Id" class="btn btn-success btn-sm text-white">Редактировать</a>
+                               <div class="divBtns">
+                                <a asp-page="Edit" asp-route-id="@ingredient.Id" class="btn">Редактировать</a>
+                                <button asp-page-handler="Delete" asp-route-id="@ingredient.Id" class="btn">Удалить</button>
+                            </div>
                             </td>
                         </tr>
                     }
@@ -50,7 +60,9 @@
             }
             else
             {
-                <p>Нет ингредиентов</p>
+                <div class="divText">
+                    <p>Нет ингредиентов</p>
+                </div>
             }
         </form>
     </div>

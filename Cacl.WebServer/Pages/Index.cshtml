@@ -4,61 +4,69 @@
 @{
 }
 <link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
-<div class="container row p-0 m-0">
-    <div class="col-9">
-        <h2 class="text-info">МОИ ПРИЕМЫ ПИЩИ</h2>
-    </div>
-    <div class="col-3">
-        <a asp-page="create" class="btn btn-info form-control text-white">Добавить прием пищи</a>
-    </div>
 
-    <div class="col-12 border p-3 mt-3">
-        <form method="post">
-            @if (Model.FoodIntakes.Count() > 0)
-            {
-                <table class="table table-striped border">
-                    <tr class="table-secondary">
-                        <th>
-                            <label>Тип приема пищи</label>
-                        </th>
-                        <th>
-                            <label>Дата</label>
-                        </th>
-                        <th>
-                            <label>Блюда</label>
-                        </th>
-                    </tr>
-                    @foreach (var foodIntake in Model.FoodIntakes)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(m => foodIntake.FoodIntakeType.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => foodIntake.Date)
-                            </td>
-                            <td>
-                                @foreach (var meal in foodIntake.Meals)
-                                {
-                                    <div>
-                                        @Html.DisplayFor(m => meal.Name)
-                                    </div>
-                                }
-                            </td>
-                            
-
-                            <td>
-                                <button asp-page-handler="Delete" asp-route-id="@foodIntake.Id" class="btn btn-danger btn-sm">Удалить</button>
-                                <a asp-page="Edit" asp-route-id="@foodIntake.Id" class="btn btn-success btn-sm text-white">Редактировать</a>
-                            </td>
-                        </tr>
-                    }
-                </table>
-            }
-            else
-            {
-                <p>Нет приемов пищи</p>
-            }
-        </form>
-    </div>
+<div>
+<div class="divHead">
+    <h2>МОИ ПРИЕМЫ ПИЩИ</h2>
+    <a asp-page="create" class="btnCreate">Добавить прием пищи</a>
 </div>
+<div class="divTable">
+    <form method="post">
+        @if (Model.FoodIntakes.Count() > 0)
+        {
+            <table>
+
+                <tr>
+                    <th>
+                        Тип приема пищи
+                    </th>
+                    <th>
+                        Дата
+                    </th>
+                    <th>
+                        Блюда
+                    </th>
+                        <th>
+                            Калорийность
+                        </th>
+                    <th>
+                        Действия
+                    </th>
+                </tr>
+
+
+                @foreach (var foodIntake in Model.FoodIntakes)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => foodIntake.FoodIntakeType.Name)</td>
+                        <td>@Html.DisplayFor(m => foodIntake.Date)</td>
+                        <td>
+                            @foreach (var meal in foodIntake.Meals)
+                            {
+                                <div>@Html.DisplayFor(m => meal.Name)</div>
+                            }
+                        </td>
+                            <td>
+                                @Html.DisplayFor(m => foodIntake.TotalCalories)
+                            </td>
+                        <td>
+                            <div class="divBtns">
+                                <a asp-page="Edit" asp-route-id="@foodIntake.Id" class="btn">Редактировать</a>
+                                <button asp-page-handler="Delete" asp-route-id="@foodIntake.Id" class="btn">Удалить</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <div class="divText">
+                <p>Нет приемов пищи</p>
+            </div>
+        }
+    </form>
+</div>
+</div>
+

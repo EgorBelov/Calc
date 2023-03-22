@@ -2,11 +2,11 @@
 @model CalcApi.Pages.Account.LoginModel
 @{
 }
-
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
 <h2>@ViewData["Title"]</h2>
 
-<div class="row">
-    <div class="col-md-4">
+<div class="row justify-content-md-center">
+    <div class="col-md-auto">
         <form method="post">
             <div class="form-group">
                 <label asp-for="Email">Почта</label>
@@ -19,8 +19,8 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 20px">
-                <button type="submit" class="btn btn-primary">Войти</button>
-                <button class="btn btn-secondary" style="color: white" asp-page="/Account/Register">
+                <button type="submit" class="btn">Войти</button>
+                <button class ="btn"  asp-page="/Account/Register">
                     Регистрация
                 </button>
             </div>
