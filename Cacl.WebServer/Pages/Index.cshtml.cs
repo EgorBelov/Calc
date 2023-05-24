@@ -27,7 +27,10 @@ namespace CaclApi.Pages
             {
                 var foodIntakes = await _foodIntakesService.GetFoodIntakes(ct);
                 FoodIntakes = foodIntakes;
-                
+                foreach (var food in FoodIntakes)
+                {
+                    food.FoodIntakeTotal();
+                }
                 return Page();
             }
             catch (Exception)

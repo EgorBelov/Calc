@@ -27,6 +27,7 @@ namespace CaclApi.Pages.Meals
             {
                 var meals = await _mealService.GetMeals(ct);
                 Meals = meals;
+                foreach (var meal in Meals) { meal.MealTotal(); }
                 return Page();
             }
             catch (Exception)

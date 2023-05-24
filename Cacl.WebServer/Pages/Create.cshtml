@@ -7,29 +7,29 @@
 <h2>Добавление новый прием пищи</h2>
 <form method="post">
     @*<input asp-for="FoodIntake.Id" type="hidden" />*@
-    
+
     <label asp-for="FoodIntake.FoodIntakeType" class="control-label">Тип приема пищи</label>
-    
+
     <select asp-for="FoodIntake.FoodIntakeTypeId" class="form-control"
             asp-items="@Model.FoodIntakeTypeSL">
         <option value="">Выбор типа приема пищи</option>
     </select>
     <span asp-validation-for="FoodIntake.FoodIntakeTypeId" class="text-danger" />
 
-    <label asp-for="@Model.SelectedMeals" class="control-label">Блюдо</label>
-    <select asp-for="@Model.SelectedMeals" class="form-control"
-            asp-items="@Model.MealSL">
-        <option value="">Выбор блюда</option>
-    </select>
-    <span asp-validation-for="@Model.SelectedMeals" class="text-danger" />
-    
+    <label asp-for="@Model.SelectedMealIds" class="control-label">Блюдо</label>
+    <select asp-for="@Model.SelectedMealIds" class="form-control" asp-items="@Model.MealList" multiple size="5"></select>
+    <span asp-validation-for="@Model.SelectedMealIds" class="text-danger"></span>
+
+
     <p>
         <label asp-for="FoodIntake.Date">Дата приема пищи</label><br />
         <input asp-for="FoodIntake.Date" type="date" />
     </p>
-    <input type="submit" value="Отправить" class="inputSend"/>
+    <input type="submit" value="Отправить" class="inputSend" />
 </form>
 
-@section Scripts{ 
-        <partial name="_ValidationScriptsPartial" />
+@section Scripts {
+    <script>
+       
+        </script>
 }

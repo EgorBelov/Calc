@@ -75,7 +75,7 @@ using (var scope = app.Services.CreateScope())
 
 
     var db = serviceProvider.GetRequiredService<CalcApiContext>();
-    //await db.Database.EnsureDeletedAsync();
+    await db.Database.EnsureDeletedAsync();
     await db.Database.EnsureCreatedAsync();
     await CalcApiContextSeed.InitializeDb(db);
 

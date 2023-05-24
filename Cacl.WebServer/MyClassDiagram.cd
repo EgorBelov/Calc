@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CaclApi.DAL.Entities.FoodIntake">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgADAAgAAAAAAACAAAAAAAgAAAgAAAABAAAAAAAAIAA=</HashCode>
+      <FileName>DAL\Entities\FoodIntake.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.FoodIntakeType">
+    <Position X="10.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgCAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\FoodIntakeType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.Ingredient">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAgAAAAgAACAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>DAL\Entities\Ingredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.Meal">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACACAgAAAACQAAAAIAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\Meal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.MealCategory">
+    <Position X="7.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\MealCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.PhysicalActivity">
+    <Position X="15.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAgAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\PhysicalActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.Product">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAAAAAAAAAAAAACQAAAAAAAAAAAACAAAAEAA=</HashCode>
+      <FileName>DAL\Entities\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.ProductCategory">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>DAL\Entities\ProductCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.User">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAABAAADAAAAEAAAAQAACAAAgAAABAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaclApi.DAL.Entities.WeightDiary">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAABAAAAAAAAAgAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Entities\WeightDiary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

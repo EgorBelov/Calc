@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CaclApi.Pages.Meals
 {
@@ -22,7 +24,10 @@ namespace CaclApi.Pages.Meals
 
 
         [BindProperty]
-        public List<Product> SelectedProducts { get; set; }
+        public List<SelectListItem> IngredientList { get; set; }
+
+        [BindProperty]
+        public List<int> SelectedIngredientIds { get; set; }
 
         public CreateModel(CalcApiContext context, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor)
         {
@@ -33,10 +38,18 @@ namespace CaclApi.Pages.Meals
         }
 
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             IngredientDropDownList(_context);
             MealCategoryDropDownList(_context);
+
+            var ingredients = await _context.Ingredients.Include(x => x.Product).ToListAsync();
+            IngredientList = ingredients.Select(m => new SelectListItem
+            {
+                Value = m.Id.ToString(),
+                Text = m.Product.Name + " " + m.ProductQuantity.ToString(),
+            }).ToList();
+
             return Page();
         }
 
@@ -48,9 +61,13 @@ namespace CaclApi.Pages.Meals
                 try
                 {
                     //var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-                    //Ingredient.User = user;
+                    //FoodIntake.User = user;
 
-                    //foreach (var meal in SelectedProducts) Ingredient.Ingredient.Add(meal);
+                    var selectedIngredients = await _context.Ingredients
+                    .Where(m => SelectedIngredientIds.Contains(m.Id))
+                    .ToListAsync();
+
+                    Meal.Ingredients = selectedIngredients;
 
                     await _context.Meals.AddAsync(Meal);
                     await _context.SaveChangesAsync();
