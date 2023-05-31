@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CaclApi.Pages
 {
@@ -20,7 +22,11 @@ namespace CaclApi.Pages
         [BindProperty]
         public FoodIntake FoodIntake { get; set; }
 
+        [BindProperty]
+        public List<SelectListItem> MealList { get; set; }
 
+        [BindProperty]
+        public List<int> SelectedMealIds { get; set; }
         public EditModel(CalcApiContext context, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor, IFoodIntakeService foodIntakesService)
         {
             _context = context;
@@ -46,7 +52,12 @@ namespace CaclApi.Pages
 
             if (FoodIntake == null)
                 return NotFound();
-
+            var meals = await _context.Meals.ToListAsync();
+            MealList = meals.Select(m => new SelectListItem
+            {
+                Value = m.Id.ToString(),
+                Text = m.Name
+            }).ToList();
             FoodIntakeTypeDropDownList(_context, FoodIntake.FoodIntakeTypeId);
           
 
@@ -67,10 +78,18 @@ namespace CaclApi.Pages
                 if (foodIntake == null)
                     return NotFound();
 
+                foodIntake.Meals.Clear();
+                var selectedMeals = await _context.Meals
+                    .Where(m => SelectedMealIds.Contains(m.Id))
+                    .ToListAsync();
+                FoodIntake.Meals = selectedMeals;
+                FoodIntake.TotalCalories = 0;
+                FoodIntake.FoodIntakeTotal();
+                foodIntake.Meals = FoodIntake.Meals;
                 foodIntake.Date = FoodIntake.Date;
                 foodIntake.FoodIntakeTypeId = FoodIntake.FoodIntakeTypeId;
-               
 
+               
                 await _context.SaveChangesAsync();
 
                 return RedirectToPage("/Index");

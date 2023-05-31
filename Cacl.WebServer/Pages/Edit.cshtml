@@ -19,6 +19,9 @@
     </select>
     <span asp-validation-for="FoodIntake.FoodIntakeTypeId" class="text-danger" />
 
+    <label asp-for="@Model.SelectedMealIds" class="control-label">Блюдо</label>
+     <select asp-for="@Model.SelectedMealIds" class="form-control" asp-items="@Model.MealList" multiple size="5"></select>
+    <span asp-validation-for="@Model.SelectedMealIds" class="text-danger"></span>
 
 
     <p>

@@ -50,6 +50,7 @@ namespace CaclApi.Pages.Services
 
             var foodIntake = await _context.FoodIntakes
                 .Include(x => x.FoodIntakeType)
+                .Include(x => x.Meals)
                 .Where(x => x.UserId == user.Id)
                 .FirstOrDefaultAsync(x => x.Id == id) ;
 

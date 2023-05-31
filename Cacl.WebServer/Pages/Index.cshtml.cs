@@ -29,6 +29,8 @@ namespace CaclApi.Pages
                 FoodIntakes = foodIntakes;
                 foreach (var food in FoodIntakes)
                 {
+                    foreach (var meal in food.Meals) meal.MealTotal();
+                    
                     food.FoodIntakeTotal();
                 }
                 return Page();
