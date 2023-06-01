@@ -83,8 +83,8 @@ namespace CaclApi.Pages
                     .Where(m => SelectedMealIds.Contains(m.Id))
                     .ToListAsync();
                 FoodIntake.Meals = selectedMeals;
-                FoodIntake.TotalCalories = 0;
                 FoodIntake.FoodIntakeTotal();
+                foodIntake.TotalCalories = FoodIntake.TotalCalories;
                 foodIntake.Meals = FoodIntake.Meals;
                 foodIntake.Date = FoodIntake.Date;
                 foodIntake.FoodIntakeTypeId = FoodIntake.FoodIntakeTypeId;

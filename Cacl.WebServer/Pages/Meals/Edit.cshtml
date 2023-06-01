@@ -19,12 +19,11 @@
     </select>
     <span asp-validation-for="Meal.MealCategoryId" class="text-danger" />
 
-    @* <label asp-for="@Model.SelectedProducts" class="control-label">Блюдо</label>
-    <select asp-for="@Model.SelectedProducts" class="form-control"
-            asp-items="@Model.ProductSL">
-        <option value="">Выбор блюда</option>
-    </select>
-    <span asp-validation-for="@Model.SelectedProducts" class="text-danger" />*@
+
+    <label asp-for="@Model.SelectedIngredientIds" class="control-label">Блюдо</label>
+    <select asp-for="@Model.SelectedIngredientIds" class="form-control" asp-items="@Model.IngredientList" multiple size="5"></select>
+    <span asp-validation-for="@Model.SelectedIngredientIds" class="text-danger"></span>
+
 
 
     <input type="submit" value="Сохранить" class="inputSend" />

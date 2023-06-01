@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CaclApi.Pages.Meals
 {
@@ -19,7 +21,11 @@ namespace CaclApi.Pages.Meals
 
         [BindProperty]
         public Meal Meal { get; set; }
+        [BindProperty]
+        public List<SelectListItem> IngredientList { get; set; }
 
+        [BindProperty]
+        public List<int> SelectedIngredientIds { get; set; }
 
         public EditModel(CalcApiContext context, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor, IMealService mealService)
         {
@@ -48,7 +54,12 @@ namespace CaclApi.Pages.Meals
                 return NotFound();
 
             MealCategoryDropDownList(_context, Meal.MealCategoryId);
-
+            var ingredients = await _context.Ingredients.Include(x => x.Product).ToListAsync();
+            IngredientList = ingredients.Select(m => new SelectListItem
+            {
+                Value = m.Id.ToString(),
+                Text = m.Product.Name + " " + m.ProductQuantity.ToString(),
+            }).ToList();
 
             return Page();
         }
@@ -67,13 +78,22 @@ namespace CaclApi.Pages.Meals
                 if (meal == null)
                     return NotFound();
 
+                meal.Ingredients.Clear();
+                var selectedIngredients = await _context.Ingredients
+                    .Where(m => SelectedIngredientIds.Contains(m.Id))
+                    .ToListAsync();
+
+                Meal.Ingredients = selectedIngredients;
+                Meal.MealTotal();
+                meal.TotalCalories = Meal.TotalCalories;
+                meal.Ingredients = Meal.Ingredients;
                 meal.Name = Meal.Name;
                 
 
 
                 await _context.SaveChangesAsync();
 
-                return RedirectToPage("/Index");
+                return RedirectToPage("Index");
             }
 
             MealCategoryDropDownList(_context);

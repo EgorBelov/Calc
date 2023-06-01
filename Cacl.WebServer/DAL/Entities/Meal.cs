@@ -9,12 +9,14 @@
         public List<Ingredient> Ingredients { get; set; } = new ();
         public List<FoodIntake> FoodIntakes { get; set; } = new ();
 
-        public int TotalCalories { get; set; } = 0;
+        public double TotalCalories { get; set; } = 0;
         
         public void MealTotal()
         {
-            foreach(var item in Ingredients)
+         
+            foreach (var item in Ingredients)
             {
+                item.IngredientTotal();
                 this.TotalCalories += item.TotalCalories;
             }
         }

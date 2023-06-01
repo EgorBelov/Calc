@@ -8,6 +8,10 @@
 <div>
 <div class="divHead">
     <h2>МОИ ПРИЕМЫ ПИЩИ</h2>
+        <div class="divSearch">
+            <input type="text" id="searchInput" placeholder="Поиск..." />
+           @* <button id="searchButton" class="btnCreate">Найти</button>*@
+        </div>
     <a asp-page="create" class="btnCreate">Добавить прием пищи</a>
 </div>
 <div class="divTable">
@@ -69,4 +73,28 @@
     </form>
 </div>
 </div>
+<script>
+    // Поиск при вводе текста в поле ввода
+    document.getElementById("searchInput").addEventListener("input", function () {
+        var searchText = document.getElementById("searchInput").value.toLowerCase();
+        filterTable(searchText);
+    });
+
+    // Функция фильтрации таблицы
+    function filterTable(searchText) {
+        var table = document.getElementsByTagName("table")[0];
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < rows.length; i++) {
+            var row = rows[i];
+            var rowData = row.textContent.toLowerCase();
+
+            if (rowData.indexOf(searchText) > -1) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    }
+</script>
 

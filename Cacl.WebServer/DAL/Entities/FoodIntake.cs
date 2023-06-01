@@ -11,12 +11,13 @@
         public User? User { get; set; }   
 
 
-        public int TotalCalories { get; set; } = 0;
+        public double TotalCalories { get; set; } = 0;
 
         public void FoodIntakeTotal ()
         {
             foreach (var item in Meals)
             {
+                item.MealTotal();
                 this.TotalCalories += item.TotalCalories;
             }
         }

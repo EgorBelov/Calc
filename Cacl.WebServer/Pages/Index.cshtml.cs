@@ -21,6 +21,8 @@ namespace CaclApi.Pages
         }
         public List<FoodIntake> FoodIntakes { get; set; }
         //public List<Ingredient> Ingredient { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchText { get; set; }
         public async Task<IActionResult> OnGetAsync(CancellationToken ct)
         {
             try
@@ -32,6 +34,15 @@ namespace CaclApi.Pages
                     foreach (var meal in food.Meals) meal.MealTotal();
                     
                     food.FoodIntakeTotal();
+                }
+                // Применение фильтрации
+                if (!string.IsNullOrEmpty(SearchText))
+                {
+                    foodIntakes = foodIntakes.Where(f => f.FoodIntakeType.Name.ToLower().Contains(SearchText) ||
+                                                         f.Date.ToString().ToLower().Contains(SearchText) ||
+                                                         f.Meals.Any(m => m.Name.ToLower().Contains(SearchText)) ||
+                                                         f.TotalCalories.ToString().ToLower().Contains(SearchText))
+                                             .ToList();
                 }
                 return Page();
             }

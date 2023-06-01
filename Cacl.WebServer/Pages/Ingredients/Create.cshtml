@@ -7,11 +7,14 @@
 <h2>Добавление нового ингредиента</h2>
 <form method="post">
     @*<input asp-for="Ingredient.Id" type="hidden" />*@
-    
+
     <label asp-for="Ingredient.Product" class="control-label">Продукт</label>
-    
+
+    <label for="searchInput" class="control-label">Поиск продуктов:</label>
+    <input id="searchInput" type="text" class="form-control" />
+
     <select asp-for="Ingredient.ProductId" class="form-control"
-            asp-items="@Model.ProductSL">
+            asp-items="@Model.ProductSL" id="mealList">
         <option value="">Выбор продукта</option>
     </select>
     <span asp-validation-for="Ingredient.ProductId" class="text-danger" />
@@ -28,6 +31,33 @@
     <input type="submit" value="Отправить" class="inputSend" />
 </form>
 
-@section Scripts{ 
-            <partial name="_ValidationScriptsPartial" />
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#searchInput").on("input", function () {
+                var searchText = $(this).val().toLowerCase();
+                $("#mealList option").each(function () {
+                    var optionText = $(this).text().toLowerCase();
+                    if (optionText.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+            $("#mealList").on("mousedown", function () {
+                $(this).attr("size", 5); // Установите желаемое количество отображаемых элементов
+            }).on("change", function () {
+                $(this).attr("size", 1); // Восстановите один элемент после выбора
+            });
+
+            $("form").on("submit", function () {
+                var productId = $("#mealList").val();
+                $("#Ingredient_ProductId").val(productId); // Установите выбранное значение продукта в скрытое поле перед отправкой формы
+            });
+        });
+    </script>
 }
+
+

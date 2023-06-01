@@ -21,14 +21,31 @@
     </select>
     <span asp-validation-for="Meal.MealCategoryId" class="text-danger" />
 
+    <label for="searchInput" class="control-label">Поиск ингредиентов:</label>
+    <input id="searchInput" type="text" class="form-control" />
+
     <label asp-for="@Model.SelectedIngredientIds" class="control-label">Блюдо</label>
-    <select asp-for="@Model.SelectedIngredientIds" class="form-control" asp-items="@Model.IngredientList" multiple size="5"></select>
+    <select asp-for="@Model.SelectedIngredientIds" class="form-control" asp-items="@Model.IngredientList" multiple size="5" id="mealList"></select>
     <span asp-validation-for="@Model.SelectedIngredientIds" class="text-danger"></span>
 
    
     <input type="submit" value="Отправить" class="inputSend" />
 </form>
 
-@section Scripts{
-    <partial name="_ValidationScriptsPartial" />
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#searchInput").on("input", function () {
+                var searchText = $(this).val().toLowerCase();
+                $("#mealList option").each(function () {
+                    var optionText = $(this).text().toLowerCase();
+                    if (optionText.includes(searchText)) {
+                        $(this).prop("hidden", false);
+                    } else {
+                        $(this).prop("hidden", true);
+                    }
+                });
+            });
+        });
+    </script>
 }

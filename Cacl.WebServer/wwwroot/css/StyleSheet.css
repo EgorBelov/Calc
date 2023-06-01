@@ -15,7 +15,11 @@ h2 {
     letter-spacing: 1px;
     text-align: center;
 }
-
+.divSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
 .btnCreate {
