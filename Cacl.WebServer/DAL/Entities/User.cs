@@ -31,18 +31,7 @@ namespace CaclApi.DAL.Entities
         public User()
         {
         }
-        public double NormCal()
-        {
-            double res = 0.0;
-            if (this.Sex == "Male")
-            {
-                res = (88.36 + (13.4 * (double)this.Weight) + (4.8 * (double)this.Height) - (5.7 * (double)this.Age)) * (double)(this.PhysicalActivity?.Ratio ?? 0);
-            }
-            else
-            {
-               res = (447.6 + (9.2 * (double)this.Weight) + (3.1 * (double)this.Height) - (4.3* (double)this.Age)) * (double)(this.PhysicalActivity?.Ratio ?? 0);
-            }
-            return res;
-        }
+      
+
     }
 }

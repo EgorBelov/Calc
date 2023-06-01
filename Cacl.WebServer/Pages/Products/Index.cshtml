@@ -1,0 +1,81 @@
+﻿@page
+@model CaclApi.Pages.Products.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+<div>
+    <div class="divHead">
+        <h2>Продукты</h2>
+        <div class="divSearch">
+            <input type="text" id="searchInput" placeholder="Поиск..." />
+        </div>
+       
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Ingredients.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            Название
+                        </th>                     
+                        <th>
+                            Калорийность
+                        </th>
+                        <th>
+                            Категория
+                        </th>
+                    </tr>
+                    @foreach (var ingredient in Model.Ingredients)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => ingredient.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => ingredient.Calories)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => ingredient.ProductCategory.Name)
+                            </td>
+
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <div class="divText">
+                    <p>Нет продуктов</p>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+<script>
+    // Поиск при вводе текста в поле ввода
+    document.getElementById("searchInput").addEventListener("input", function () {
+        var searchText = document.getElementById("searchInput").value.toLowerCase();
+        filterTable(searchText);
+    });
+
+    // Функция фильтрации таблицы
+    function filterTable(searchText) {
+        var table = document.getElementsByTagName("table")[0];
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < rows.length; i++) {
+            var row = rows[i];
+            var rowData = row.textContent.toLowerCase();
+
+            if (rowData.indexOf(searchText) > -1) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    }
+</script>

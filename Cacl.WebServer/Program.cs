@@ -20,7 +20,8 @@ builder.Services.AddSwaggerGen();
 builder.Services
     .AddTransient<IFoodIntakeService, FoodIntakeService>()
     .AddTransient<IMealService, MealService>()
-    .AddTransient<IIngredientService, IngredientService>();
+    .AddTransient<IIngredientService, IngredientService>()
+    .AddTransient<IProductService, ProductService>();
 
 
 builder.Services.AddSwaggerGen();
@@ -48,6 +49,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.Password.RequireUppercase = false;
 })
     .AddEntityFrameworkStores<CalcApiContext>()
+    .AddRoles<IdentityRole>()
     .AddDefaultTokenProviders();
 
 
@@ -78,6 +80,7 @@ using (var scope = app.Services.CreateScope())
     await db.Database.EnsureDeletedAsync();
     await db.Database.EnsureCreatedAsync();
     await CalcApiContextSeed.InitializeDb(db);
+
 
 }
 app.Run();
