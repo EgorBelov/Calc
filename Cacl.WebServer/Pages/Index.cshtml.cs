@@ -65,8 +65,7 @@ namespace CaclApi.Pages
         }
         public IActionResult OnPostExportToExcel(CancellationToken ct)
         {
-            try
-            {
+           
                 var allFoodIntakes = _foodIntakesService.GetFoodIntakes(ct).Result;
 
                 // Применение фильтрации на основе поисковой строки
@@ -115,11 +114,8 @@ namespace CaclApi.Pages
                 stream.Position = 0;
                 string fileName = "FoodIntakes.xlsx";
                 return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
-            }
-            catch (Exception)
-            {
-                return RedirectToPage("/Account/Login");
-            }
+            
+          
         }
 
 

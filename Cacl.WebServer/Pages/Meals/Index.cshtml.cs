@@ -51,8 +51,7 @@ namespace CaclApi.Pages.Meals
 
         public async Task<IActionResult> OnPostExportToExcel(CancellationToken ct)
         {
-            try
-            {
+           
                 var meals = await _mealService.GetMeals(ct);
                 Meals = meals;
                 foreach (var meal in Meals) { meal.MealTotal(); }
@@ -106,11 +105,7 @@ namespace CaclApi.Pages.Meals
                     var fileName = "Meals.xlsx";
                     return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
                 }
-            }
-            catch (Exception)
-            {
-                return RedirectToPage("/Account/Login");
-            }
+          
         }
     }
 }

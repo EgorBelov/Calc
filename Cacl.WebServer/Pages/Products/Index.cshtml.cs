@@ -36,8 +36,7 @@ namespace CaclApi.Pages.Products
 
         public async Task<IActionResult> OnPostExportToExcel(CancellationToken ct)
         {
-            try
-            {
+           
                 var products = await _ingredientService.GetProducts(ct);
                 Ingredients = products;
 
@@ -84,11 +83,7 @@ namespace CaclApi.Pages.Products
                     var fileName = "Products.xlsx";
                     return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
                 }
-            }
-            catch (Exception)
-            {
-                return RedirectToPage("/Account/Login");
-            }
+           
         }
 
     }
