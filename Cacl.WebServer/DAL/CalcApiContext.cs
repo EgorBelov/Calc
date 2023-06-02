@@ -17,12 +17,10 @@ namespace CaclApi.DAL
         public DbSet<WeightDiary> WeightDiaries=> Set<WeightDiary>();
         public DbSet<ProductCategory> ProductCategories => Set<ProductCategory>();
         public DbSet<MealCategory> MealCategories => Set<MealCategory>();
-        //public DbSet<User> UserLogins => Set<User>();
         public DbSet<PhysicalActivity> PhysicalActivities => Set<PhysicalActivity>();
         public CalcApiContext(DbContextOptions<CalcApiContext> options)
             : base(options)
         {
-            //Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
     }
 }
