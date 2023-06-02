@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Principal;
 using CaclApi.DAL.Entities;
 using CaclApi.Pages.Services;
+using Microsoft.EntityFrameworkCore.Internal;
+using OfficeOpenXml;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -28,6 +30,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CalcApiContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
+    //options.UseSqlite("Filename=MyDatabase.db");
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -71,6 +74,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
 
+ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;

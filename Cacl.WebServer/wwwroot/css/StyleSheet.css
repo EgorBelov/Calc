@@ -20,6 +20,19 @@ h2 {
     flex-direction: row;
     justify-content: space-between;
 }
+.btnExport {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+    .btnExport:hover {
+        background-color: #45a049;
+    }
 
 
 .btnCreate {
