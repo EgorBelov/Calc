@@ -13,10 +13,10 @@
         
         public void MealTotal()
         {
-         
+            this.TotalCalories = 0;
             foreach (var item in Ingredients)
             {
-                item.IngredientTotal();
+                //item.IngredientTotal();
                 this.TotalCalories += item.TotalCalories;
             }
         }

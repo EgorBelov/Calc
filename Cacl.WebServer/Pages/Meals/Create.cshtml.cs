@@ -68,7 +68,7 @@ namespace CaclApi.Pages.Meals
                     .ToListAsync();
 
                     Meal.Ingredients = selectedIngredients;
-
+                    Meal.MealTotal();
                     await _context.Meals.AddAsync(Meal);
                     await _context.SaveChangesAsync();
                     return RedirectToPage("/Meals/Index");

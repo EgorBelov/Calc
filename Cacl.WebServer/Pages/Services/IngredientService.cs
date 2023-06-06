@@ -61,7 +61,10 @@ namespace CaclApi.Pages.Services
                 .Include(x => x.Product).ThenInclude(x => x.ProductCategory)
                 //.Where(x => x.UserId == user.Id)
                 .ToListAsync();
-
+            foreach(var item in ingredients)
+            {
+                item.IngredientTotal();
+            }
 
             return ingredients;
         }

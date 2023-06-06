@@ -40,6 +40,7 @@ namespace CaclApi.Pages.Ingredients
             {
                 try
                 {
+                    //Ingredient.IngredientTotal();
                     await _context.Ingredients.AddAsync(Ingredient);
                     await _context.SaveChangesAsync();
                     return RedirectToPage("/Ingredients/Index");

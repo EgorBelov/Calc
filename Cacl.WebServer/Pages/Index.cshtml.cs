@@ -21,6 +21,7 @@ namespace CaclApi.Pages
         {
             _foodIntakesService = foodIntakesService;
         }
+     
         public List<FoodIntake> FoodIntakes { get; set; }
         //public List<Ingredient> Ingredient { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -31,21 +32,16 @@ namespace CaclApi.Pages
             {
                 var foodIntakes = await _foodIntakesService.GetFoodIntakes(ct);
                 FoodIntakes = foodIntakes;
-                foreach (var food in FoodIntakes)
-                {
-                    foreach (var meal in food.Meals) meal.MealTotal();
-                    
-                    food.FoodIntakeTotal();
-                }
-                // Применение фильтрации
-                if (!string.IsNullOrEmpty(SearchText))
-                {
-                    foodIntakes = foodIntakes.Where(f => f.FoodIntakeType.Name.ToLower().Contains(SearchText) ||
-                                                         f.Date.ToString().ToLower().Contains(SearchText) ||
-                                                         f.Meals.Any(m => m.Name.ToLower().Contains(SearchText)) ||
-                                                         f.TotalCalories.ToString().ToLower().Contains(SearchText))
-                                             .ToList();
-                }
+             
+                //// Применение фильтрации
+                //if (!string.IsNullOrEmpty(SearchText))
+                //{
+                //    foodIntakes = foodIntakes.Where(f => f.FoodIntakeType.Name.ToLower().Contains(SearchText) ||
+                //                                         f.Date.ToString().ToLower().Contains(SearchText) ||
+                //                                         f.Meals.Any(m => m.Name.ToLower().Contains(SearchText)) ||
+                //                                         f.TotalCalories.ToString().ToLower().Contains(SearchText))
+                //                             .ToList();
+                //}
                 return Page();
             }
             catch (Exception)
@@ -92,7 +88,7 @@ namespace CaclApi.Pages
                     int row = 2;
                     foreach (var foodIntake in filteredFoodIntakes)
                     {
-                        worksheet.Cells[row, 1].Value = foodIntake.FoodIntakeType.Name;
+                        worksheet.Cells[row, 1].Value = foodIntake.FoodIntakeType?.Name;
                         worksheet.Cells[row, 2].Value = foodIntake.Date.ToString();
                         worksheet.Cells[row, 3].Value = string.Join(", ", foodIntake.Meals.Select(m => m.Name));
                         worksheet.Cells[row, 4].Value = foodIntake.TotalCalories;

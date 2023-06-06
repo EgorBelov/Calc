@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaclApi", "CaclApi.csproj", "{B3A5C6C8-505B-4E22-8254-6F2665396E33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectCalcApi", "..\TestProjectCalcApi\TestProjectCalcApi.csproj", "{2BE626A2-C7A5-4AC0-B7D7-E6F693C1A132}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectCalcApi", "..\TestProjectCalcApi\TestProjectCalcApi.csproj", "{2BE626A2-C7A5-4AC0-B7D7-E6F693C1A132}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

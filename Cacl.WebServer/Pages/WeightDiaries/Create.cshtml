@@ -1,0 +1,18 @@
+﻿@page
+@model CaclApi.Pages.WeightDiaries.CreateModel
+@{
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+<h2>Добавление записи в дневник веса</h2>
+<form method="post">
+    <p>
+        <label asp-for="WeightDiary.Date">Дата</label><br />
+        <input asp-for="WeightDiary.Date" type="date" />
+    </p>
+
+    <p>
+        <label asp-for="WeightDiary.CurrentWeight">Вес</label><br />
+        <input asp-for="WeightDiary.CurrentWeight" type="number" />
+    </p>
+    <input type="submit" value="Отправить" class="inputSend" />
+</form>

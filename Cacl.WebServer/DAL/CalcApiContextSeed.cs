@@ -10,25 +10,25 @@ namespace CaclApi.DAL
             var physicalActivity1 = new PhysicalActivity
             {
                 Description = "Walking",
-                Ratio = 0.3,
+                Ratio = 1.3,
             };
 
             var physicalActivity2 = new PhysicalActivity
             {
                 Description = "Running",
-                Ratio = 0.7,
+                Ratio = 1.7,
             };
 
             var physicalActivity3 = new PhysicalActivity
             {
                 Description = "Swimming",
-                Ratio = 0.8,
+                Ratio = 1.8,
             };
 
             var physicalActivity4 = new PhysicalActivity
             {
                 Description = "Cycling",
-                Ratio = 0.5,
+                Ratio = 1.5,
             };
 
 
@@ -58,42 +58,8 @@ namespace CaclApi.DAL
             // Create a list of WeightDiary objects
             List<WeightDiary> weightDiaries = new List<WeightDiary>
             {
-                new WeightDiary
-                {
-                    Date = new DateOnly(2022, 01, 01),
-                    CurrentWeight = 74.5,
-                    User = users[0]
-                },
-                new WeightDiary
-                {
-                    Date = new DateOnly(2022, 01, 02),
-                    CurrentWeight = 74.2,
-                    User = users[0]
-                },
-                new WeightDiary
-                {
-                    Date = new DateOnly(2022, 01, 03),
-                    CurrentWeight = 74.0,
-                    User = users[0]
-                },
-                new WeightDiary
-                {
-                    Date = new DateOnly(2022, 01, 01),
-                    CurrentWeight = 62.5,
-                    User = users[1]
-                },
-                new WeightDiary
-                {
-                    Date = new DateOnly(2022, 01, 02),
-                    CurrentWeight = 62.3,
-                    User = users[1]
-                },
-                new WeightDiary
-                {
-                    Date = new DateOnly(2022, 01, 03),
-                    CurrentWeight = 62.0,
-                    User = users[1]
-                }
+                new WeightDiary(DateTime.Now, 74.5, users[0]),                           
+                new WeightDiary(DateTime.Now, 62.5, users[1]),
             };
 
             // Create a list of ProductCategory objects
@@ -231,6 +197,12 @@ namespace CaclApi.DAL
                     Description = "30g of almonds"
                 }
             };
+
+            for (int i = 0; i < ingredients.Count(); i++)
+            {
+                ingredients[i].IngredientTotal();
+            }
+
 
             List<MealCategory> mealsCategories = new List<MealCategory>
             {

@@ -1,0 +1,94 @@
+﻿@page
+@model CaclApi.Pages.WeightDiaries.IndexModel
+@{
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+
+<div>
+    <div class="divHead">
+        <h2>МОИ Дневник веса</h2>
+        <div class="divSearch">
+            <input type="text" id="searchInput" placeholder="Поиск..." />
+            @* <button id="searchButton" class="btnCreate">Найти</button>*@
+        </div>
+        <a asp-page="create" class="btnCreate">Добавить дневник веса</a>
+    </div>
+    <div class="divTable">
+        <form method="post">
+            @if (Model.WeightDiaries.Count() > 0)
+            {
+                <table>
+
+                    <tr>
+                        <th>
+                            Дата
+                        </th>
+                        <th>
+                            Текущий вес
+                        </th>
+                        <th>
+                            Норм калорий
+                        </th>                        
+                        <th>
+                            Действия
+                        </th>
+                    </tr>
+
+
+                    @foreach (var foodIntake in Model.WeightDiaries)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => foodIntake.Date)</td>
+                            <td>@Html.DisplayFor(m => foodIntake.CurrentWeight)</td>
+                            <td>@Html.DisplayFor(m => foodIntake.NormCalories)</td>
+                            <td>
+                                <div class="divBtns">
+                                    <button asp-page-handler="Delete" asp-route-id="@foodIntake.Id" class="btn">Удалить</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <div class="divText">
+                    <p>Нет записей в дневнике</p>
+                </div>
+            }
+        </form>
+
+    </div>
+    <form method="post" asp-page-handler="ExportToExcel">
+        <button type="submit" class="btnExport">Экспортировать в Excel</button>
+    </form>
+
+
+
+
+</div>
+<script>
+    // Поиск при вводе текста в поле ввода
+    document.getElementById("searchInput").addEventListener("input", function () {
+        var searchText = document.getElementById("searchInput").value.toLowerCase();
+        filterTable(searchText);
+    });
+
+    // Функция фильтрации таблицы
+    function filterTable(searchText) {
+        var table = document.getElementsByTagName("table")[0];
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < rows.length; i++) {
+            var row = rows[i];
+            var rowData = row.textContent.toLowerCase();
+
+            if (rowData.indexOf(searchText) > -1) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    }
+</script>

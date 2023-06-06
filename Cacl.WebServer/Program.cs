@@ -23,7 +23,8 @@ builder.Services
     .AddTransient<IFoodIntakeService, FoodIntakeService>()
     .AddTransient<IMealService, MealService>()
     .AddTransient<IIngredientService, IngredientService>()
-    .AddTransient<IProductService, ProductService>();
+    .AddTransient<IProductService, ProductService>()
+    .AddTransient<IWeightDiariesService, WeightDiariesService>();
 
 
 builder.Services.AddSwaggerGen();

@@ -30,7 +30,6 @@ namespace CaclApi.Pages.Meals
             {
                 var meals = await _mealService.GetMeals(ct);
                 Meals = meals;
-                foreach (var meal in Meals) { meal.MealTotal(); }
                 return Page();
             }
             catch (Exception)
@@ -72,7 +71,7 @@ namespace CaclApi.Pages.Meals
                     foreach (var meal in Meals)
                     {
                         worksheet.Cells[row, 1].Value = meal.Name;
-                        worksheet.Cells[row, 2].Value = meal.MealCategory.Name;
+                        worksheet.Cells[row, 2].Value = meal.MealCategory?.Name;
 
                         var products = meal.Ingredients.Select(i => i.Product.Name);
                         worksheet.Cells[row, 3].Value = string.Join(", ", products);

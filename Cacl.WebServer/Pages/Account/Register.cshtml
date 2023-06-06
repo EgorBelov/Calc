@@ -33,11 +33,11 @@
                 <input asp-for="Height" class="form-control" type="number"  />
               @*  <span asp-validation-for="Height" class="text-danger"></span>*@
             </div>
-             <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="Weight"></label>
                 <input asp-for="Weight" class="form-control" type="number" />
                 <span asp-validation-for="Weight" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Age"></label>
                 <input asp-for="Age" class="form-control" type="number" />
@@ -45,15 +45,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="Sex"></label>
-                <input asp-for="Sex" class="form-control" type="text" />
-               @* <span asp-validation-for="Sex" class="text-danger"></span>*@
+                <select asp-for="Sex" class="form-control">
+                    <option value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
             </div>
-            @*<label asp-for="PhysicalActivity" class="control-label">Продукт</label>
-            <select asp-for="PhysicalActivity" class="form-control"
-                asp-items="@Model.physicalActivitySL">
-                <option value="">Физическая активность:</option>
+
+
+            <label asp-for="PhysicalActivityId" class="control-label">Физическая активность</label>
+                <select asp-for="PhysicalActivityId" class="form-control"
+                            asp-items="@Model.PhysicalActivitySL" id="mealList">
+                <option value="">Выбор физической активности</option>
             </select>
-            <span asp-validation-for="PhysicalActivity" class="text-danger" />*@
+            <span asp-validation-for="PhysicalActivityId" class="text-danger" />
+            
             <div style="display: flex; gap: 10px; margin-top: 20px">
                 <button type="submit" class="btn">Зарегистрироваться</button>
                 <button class="btn"  asp-page="/Account/Login">

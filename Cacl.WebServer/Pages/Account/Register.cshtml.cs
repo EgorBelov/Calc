@@ -8,10 +8,12 @@ using CaclApi.DAL.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CaclApi.DAL;
+using CaclApi.Pages.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace CalcApi.Pages.Account
 {
-    public class RegisterModel : PageModel
+    public class RegisterModel : GetConstantListPage
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
@@ -28,39 +30,47 @@ namespace CalcApi.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _context = context;
-            PhysicalActivityDropDownList();
+            PhysicalActivityDropDownList(_context);
         }
 
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            PhysicalActivityDropDownList(_context);
+            return Page();
+        }
+
+
+
+        [Required]
+        [EmailAddress]
         [BindProperty]
         public string Email { get; set; }
 
+        [Required]
         [BindProperty]
         public string Password { get; set; }
 
+        [Required]
         [BindProperty]
         public string ConfirmPassword { get; set; }
         [BindProperty]
         public string Name { get; set; }
         [BindProperty]
         public int Age { get; set; }
-        [BindProperty]
-        public double Weight { get; set; }
+        //[BindProperty]
+        //public double Weight { get; set; }
         [BindProperty]
         public double Height { get; set; }
         [BindProperty]
         public string Sex { get; set; }
+        [BindProperty]
+        public int PhysicalActivityId { get; set; }
+
+        //public SelectList physicalActivitySL { get; set; }
         //[BindProperty]
-        //public PhysicalActivity PhysicalActivity { get; set; }
-
-        public SelectList physicalActivitySL { get; set; }
-
-        public void PhysicalActivityDropDownList(object value = null)
-        {
-            var query = _context.PhysicalActivities.OrderBy(x => x.Description);
-
-            physicalActivitySL = new SelectList(query.AsNoTracking(),
-                        "Id", "Description", value);
-        }
+        //public User User { get; set; }
+        
         public string ReturnUrl { get; set; }
 
 
@@ -69,8 +79,15 @@ namespace CalcApi.Pages.Account
         {
             if (ModelState.IsValid)
             {
-                var user = new User() { Email = Email, UserName = Email, Name = Name, Weight = Weight, Height = Height , Age = Age , Sex = Sex /*, PhysicalActivity = PhysicalActivity */};
-                var result = await _userManager.CreateAsync(user, Password);
+
+                //var user = new User(Email, Password) {Name = User.Name, Age = User.Age, Height = User.Age, Sex = User.Sex, PhysicalActivity = User.PhysicalActivity };
+                
+                var meal = await _context.PhysicalActivities
+                .FirstOrDefaultAsync(x => x.Id == PhysicalActivityId);
+
+                var user = new User(Email, Password) { Name = Name, Age = Age, Height = Age, Sex = Sex, PhysicalActivity = meal };
+
+                var result = await _userManager.CreateAsync(user, ConfirmPassword);
 
                 if (result.Succeeded)
                 {

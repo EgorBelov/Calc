@@ -12,7 +12,7 @@ namespace CaclApi.Pages.Services
     {
 
 
-
+        public SelectList PhysicalActivitySL { get; set; }
         public SelectList MealSL { get; set; }
         public SelectList FoodIntakeTypeSL { get; set; }
         public SelectList ProductSL { get; set; }
@@ -21,6 +21,13 @@ namespace CaclApi.Pages.Services
 
         public SelectList FoodIntakeSL { get; set; }
 
+
+        public void PhysicalActivityDropDownList(CalcApiContext context, object value = null)
+        {
+            var query = context.PhysicalActivities.OrderBy(x => x.Description);
+            PhysicalActivitySL = new SelectList(query.AsNoTracking(),
+                        "Id", "Description", value);
+        }
 
         public void FoodIntakeTypeDropDownList(CalcApiContext context, object value = null)
         {

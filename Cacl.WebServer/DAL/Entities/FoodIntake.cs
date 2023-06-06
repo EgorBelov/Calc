@@ -15,9 +15,9 @@
 
         public void FoodIntakeTotal ()
         {
+            this.TotalCalories = 0;
             foreach (var item in Meals)
             {
-                item.MealTotal();
                 this.TotalCalories += item.TotalCalories;
             }
         }

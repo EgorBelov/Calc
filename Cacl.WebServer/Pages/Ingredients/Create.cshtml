@@ -10,8 +10,8 @@
 
     <label asp-for="Ingredient.Product" class="control-label">Продукт</label>
 
-    <label for="searchInput" class="control-label">Поиск продуктов:</label>
-    <input id="searchInput" type="text" class="form-control" />
+   @* <label for="searchInput" class="control-label">Поиск продуктов:</label>
+    <input id="searchInput" type="text" class="form-control" />*@
 
     <select asp-for="Ingredient.ProductId" class="form-control"
             asp-items="@Model.ProductSL" id="mealList">

@@ -45,8 +45,8 @@
                                 @Html.DisplayFor(m => ingredient.ProductQuantity)
                             </td>
                             <td>
-                               
-                                @(ingredient.Product.Calories * @ingredient.ProductQuantity)
+
+                                @Html.DisplayFor(m => ingredient.TotalCalories)
                             </td>
                             <td>
                                 @Html.DisplayFor(m => ingredient.Description)

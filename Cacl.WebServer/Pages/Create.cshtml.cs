@@ -52,20 +52,29 @@ namespace CaclApi.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            //Проверка корректности представления страницы и введенных данных
             if (ModelState.IsValid)
             {
                 try
                 {
+                    // Получение информации о текущем авторизованном пользователе
                     var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+
+                    //Новый Объект класса FoodIntake и добавление ему текущего пользователя
+                    //также благодаря BindProperty ему присвоены введенные данные
                     FoodIntake.User = user;
 
+                    //Получение списка выбранных для добавления блюд
                     var selectedMeals = await _context.Meals
                     .Where(m => SelectedMealIds.Contains(m.Id))
                     .ToListAsync();
 
+                    //Добавление блюд к приему пищи
                     FoodIntake.Meals = selectedMeals;
-
+                    FoodIntake.FoodIntakeTotal();
+                    //Добавление в бд
                     await _context.FoodIntakes.AddAsync(FoodIntake);
+                    //Сохранение изменений в бд
                     await _context.SaveChangesAsync();
 
                     return RedirectToPage("/Index");
